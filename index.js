@@ -32,8 +32,8 @@ SonoffTasmotaHTTPAccessory4P.prototype.getState = function(callback) {
     if (error) return callback(error);
   	var lines = body.split("\n");
   	that.log("Sonoff HTTP 4P: " + that.hostname + " Get State: " + lines[1]);
-  	if (lines[1] == "POWER" + this.gpio + " = OFF") callback(null, 0)
-  	else if (lines[1] == "POWER" + this.gpio + " = ON") callback(null, 1)
+  	if (lines[1] == "POWER"+this.gpio+" = OFF") callback(null, 0)
+  	else if (lines[1] == "POWER"+this.gpio+" = ON") callback(null, 1)
   })
 }
 
@@ -45,8 +45,8 @@ SonoffTasmotaHTTPAccessory4P.prototype.setState = function(toggle, callback) {
     if (error) return callback(error);
   	var lines = body.split("\n");
   	that.log("Sonoff HTTP 4P: " + that.hostname + " Set State to: " + lines[1]);
-  	if (lines[1] == "POWER" + this.gpio + " = OFF") callback()
-  	else if (lines[1] == "POWER" + this.gpio + " = ON") callback()
+  	if (lines[1] == "POWER"+this.gpio+" = OFF") callback()
+  	else if (lines[1] == "POWER"+this.gpio+" = ON") callback()
   })
 }
 

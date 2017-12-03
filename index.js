@@ -28,12 +28,12 @@ function SonoffTasmotaHTTPAccessory4P(log, config) {
 
 SonoffTasmotaHTTPAccessory4P.prototype.getState = function(callback) {
   var that = this
-  request("http://" + that.hostname + "/cm?cmnd=Power" + this.gpio, function(error, response, body) {
+  request("http://" + that.hostname + "/cm?cmnd=Power" + that.gpio, function(error, response, body) {
     if (error) return callback(error);
   	var lines = body.split("\n");
   	that.log("Sonoff HTTP 4P: " + that.hostname + " Get State: " + lines[1]);
-  	if (lines[1] == "POWER"+this.gpio+" = OFF") callback(null, 0)
-  	else if (lines[1] == "POWER"+this.gpio+" = ON") callback(null, 1)
+  	if (lines[1] == "POWER" + that.gpio + " = OFF") callback(null, 0)
+  	else if (lines[1] == "POWER" + that.gpio + " = ON") callback(null, 1)
   })
 }
 
@@ -41,12 +41,12 @@ SonoffTasmotaHTTPAccessory4P.prototype.setState = function(toggle, callback) {
   var newstate = "%20Off"
   if (toggle) newstate = "%20On"
   var that = this
-  request("http://" + that.hostname + "/cm?cmnd=Power" + this.gpio + newstate, function(error, response, body) {
+  request("http://" + that.hostname + "/cm?cmnd=Power" + that.gpio + newstate, function(error, response, body) {
     if (error) return callback(error);
   	var lines = body.split("\n");
   	that.log("Sonoff HTTP 4P: " + that.hostname + " Set State to: " + lines[1]);
-  	if (lines[1] == "POWER"+this.gpio+" = OFF") callback()
-  	else if (lines[1] == "POWER"+this.gpio+" = ON") callback()
+  	if (lines[1] == "POWER" + that.gpio + " = OFF") callback()
+  	else if (lines[1] == "POWER" + that.gpio + " = ON") callback()
   })
 }
 

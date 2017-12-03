@@ -9,7 +9,7 @@ module.exports = function(homebridge) {
   homebridge.registerAccessory("homebridge-sonoff-tasmota-http-4P", "SonoffTasmotaHTTP4P", SonoffTasmotaHTTPAccessory4P);
 }
 
-function SonoffTasmotaHTTPAccessory(log, config) {
+function SonoffTasmotaHTTPAccessory4P(log, config) {
   this.log = log;
   this.config = config;
   this.name = config["name"]
@@ -26,7 +26,7 @@ function SonoffTasmotaHTTPAccessory(log, config) {
   this.log("Sonoff Tasmota HTTP 4P Initialized")
 }
 
-SonoffTasmotaHTTPAccessory.prototype.getState = function(callback) {
+SonoffTasmotaHTTPAccessory4P.prototype.getState = function(callback) {
   var that = this
   request("http://" + that.hostname + "/cm?cmnd=Power" + this.gpio, function(error, response, body) {
     if (error) return callback(error);
@@ -37,7 +37,7 @@ SonoffTasmotaHTTPAccessory.prototype.getState = function(callback) {
   })
 }
 
-SonoffTasmotaHTTPAccessory.prototype.setState = function(toggle, callback) {
+SonoffTasmotaHTTPAccessory4P.prototype.setState = function(toggle, callback) {
   var newstate = "%20Off"
   if (toggle) newstate = "%20On"
   var that = this
@@ -50,6 +50,6 @@ SonoffTasmotaHTTPAccessory.prototype.setState = function(toggle, callback) {
   })
 }
 
-SonoffTasmotaHTTPAccessory.prototype.getServices = function() {
+SonoffTasmotaHTTPAccessory4P.prototype.getServices = function() {
   return [this.service];
 }
